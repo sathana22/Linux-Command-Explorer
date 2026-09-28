@@ -1,9 +1,13 @@
 from flask import Flask, render_template, jsonify
 import json
+import os
 
 app = Flask(__name__)
 
-with open("commands.json", "r") as file:
+base_dir = os.path.dirname(os.path.abspath(__file__))
+commands_file = os.path.join(base_dir, "commands.json")
+
+with open(commands_file, "r") as file:
     commands = json.load(file)
 
 @app.route("/")
