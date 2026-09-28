@@ -12,9 +12,9 @@ pipeline {
         stage('Setup Python') {
             steps {
                 bat '''
-                    python --version
-                    python -m pip install --upgrade pip
-                    pip install -r requirements.txt
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" --version
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install --upgrade pip
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install -r requirements.txt
                 '''
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 bat '''
-                    pytest
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pytest
                 '''
             }
         }
