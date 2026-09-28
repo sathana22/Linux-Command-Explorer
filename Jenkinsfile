@@ -1,3 +1,4 @@
+// Jenkins automatic polling test
 pipeline {
     agent any
 
