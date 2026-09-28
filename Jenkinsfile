@@ -38,4 +38,4 @@ pipeline {
             echo 'Linux Command Explorer CI Pipeline Failed!'
         }
     }
-}
+}// Automatic polling verified
