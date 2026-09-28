@@ -1,0 +1,51 @@
+{
+    "ls": {
+        "description": "List directory contents.",
+        "usage": "ls [OPTION]... [FILE]...",
+        "flags": {
+            "-l": "Use a long listing format",
+            "-a": "Show hidden files",
+            "-h": "Show sizes in human readable format"
+        },
+        "example": "ls -lah"
+    },
+    "pwd": {
+        "description": "Print the current working directory.",
+        "usage": "pwd [OPTION]...",
+        "flags": {
+            "-L": "Use the logical path",
+            "-P": "Use the physical path"
+        },
+        "example": "pwd"
+    },
+    "grep": {
+        "description": "Search for patterns in files.",
+        "usage": "grep [OPTION]... PATTERNS [FILE]...",
+        "flags": {
+            "-i": "Ignore case distinctions",
+            "-v": "Select non-matching lines",
+            "-n": "Print line numbers",
+            "-r": "Read files recursively",
+            "-c": "Count matching lines"
+        },
+        "example": "grep -in \"hello\" file.txt"
+    },
+    "mkdir": {
+        "description": "Create new directories.",
+        "usage": "mkdir [OPTION]... DIRECTORY...",
+        "flags": {
+            "-p": "Create parent directories if needed",
+            "-v": "Print a message for each directory created"
+        },
+        "example": "mkdir -p project/src"
+    },
+    "cat": {
+        "description": "Display the contents of files.",
+        "usage": "cat [OPTION]... [FILE]...",
+        "flags": {
+            "-n": "Number all output lines",
+            "-b": "Number non-empty output lines"
+        },
+        "example": "cat file.txt"
+    }
+}
