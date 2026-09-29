@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: linux-command-explorer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: linux-command-explorer
+  template:
+    metadata:
+      labels:
+        app: linux-command-explorer
+    spec:
+      containers:
+        - name: linux-command-explorer
+          image: linux-command-explorer:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: linux-command-explorer
+spec:
+  selector:
+    app: linux-command-explorer
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: NodePort
