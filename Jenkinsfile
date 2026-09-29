@@ -27,6 +27,12 @@ pipeline {
                 '''
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t linux-command-explorer:latest .'
+            }
+        }
     }
 
     post {
@@ -38,4 +44,6 @@ pipeline {
             echo 'Linux Command Explorer CI Pipeline Failed!'
         }
     }
-}// Automatic polling verified
+}
+
+// Automatic polling verified

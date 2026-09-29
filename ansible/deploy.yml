@@ -1,0 +1,63 @@
+---
+- name: Deploy Linux Command Explorer
+  hosts: local
+  connection: local
+  become: false
+
+  vars:
+    project_source: "{{ playbook_dir }}/.."
+    deploy_dir: "/home/sathana_jeeva/linux-command-explorer"
+
+  tasks:
+
+    - name: Create deployment directory
+      ansible.builtin.file:
+        path: "{{ deploy_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create app directory
+      ansible.builtin.file:
+        path: "{{ deploy_dir }}/app"
+        state: directory
+        mode: "0755"
+
+    - name: Copy Flask application
+      ansible.builtin.copy:
+        src: "{{ project_source }}/app/app.py"
+        dest: "{{ deploy_dir }}/app/app.py"
+
+    - name: Copy commands data
+      ansible.builtin.copy:
+        src: "{{ project_source }}/app/commands.json"
+        dest: "{{ deploy_dir }}/app/commands.json"
+
+    - name: Copy static files
+      ansible.builtin.copy:
+        src: "{{ project_source }}/app/static/"
+        dest: "{{ deploy_dir }}/app/static/"
+
+    - name: Copy templates
+      ansible.builtin.copy:
+        src: "{{ project_source }}/app/templates/"
+        dest: "{{ deploy_dir }}/app/templates/"
+
+    - name: Copy requirements file
+      ansible.builtin.copy:
+        src: "{{ project_source }}/requirements.txt"
+        dest: "{{ deploy_dir }}/requirements.txt"
+        mode: "0644"
+
+    - name: Create Python virtual environment
+      ansible.builtin.command:
+        cmd: "python3 -m venv {{ deploy_dir }}/venv"
+        creates: "{{ deploy_dir }}/venv/bin/python"
+
+    - name: Bootstrap pip in virtual environment
+      ansible.builtin.command:
+        cmd: "{{ deploy_dir }}/venv/bin/python -m ensurepip --upgrade"
+        creates: "{{ deploy_dir }}/venv/bin/pip"
+
+    - name: Install Python dependencies
+      ansible.builtin.command:
+        cmd: "{{ deploy_dir }}/venv/bin/python -m pip install -r {{ deploy_dir }}/requirements.txt"
