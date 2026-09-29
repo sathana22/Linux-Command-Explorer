@@ -44,6 +44,15 @@ pipeline {
                 '''
             }
         }
+
+        stage('Kubernetes Deploy') {
+            steps {
+                bat '''
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\deployment.yaml
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" rollout status deployment/linux-command-explorer
+                '''
+            }
+        }
     }
 
     post {
