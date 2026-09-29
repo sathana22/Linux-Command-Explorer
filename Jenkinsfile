@@ -1,4 +1,5 @@
 // Jenkins automatic polling test
+
 pipeline {
     agent any
 
@@ -48,7 +49,12 @@ pipeline {
         stage('Kubernetes Deploy') {
             steps {
                 bat '''
+                    if not exist k8s\\deployment.yaml exit /b 1
+
                     "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" apply -f k8s\\deployment.yaml
+
+                    if errorlevel 1 exit /b 1
+
                     "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" rollout status deployment/linux-command-explorer
                 '''
             }
