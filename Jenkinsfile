@@ -30,7 +30,10 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t linux-command-explorer:latest .'
+                bat '''
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" version
+                    "C:\\Users\\SATHANA JEEVA\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t linux-command-explorer:latest .
+                '''
             }
         }
     }
