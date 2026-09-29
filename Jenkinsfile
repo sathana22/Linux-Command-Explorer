@@ -36,15 +36,23 @@ pipeline {
                 '''
             }
         }
+
+        stage('Ansible Deploy') {
+            steps {
+                bat '''
+                    wsl -d Ubuntu -- bash -c "cd '/mnt/c/Users/SATHANA JEEVA/OneDrive/Desktop/linux-command-explorer' && ansible-playbook -i ansible/inventory.ini ansible/deploy.yml"
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'Linux Command Explorer CI Pipeline Passed!'
+            echo 'Linux Command Explorer CI/CD Pipeline Passed!'
         }
 
         failure {
-            echo 'Linux Command Explorer CI Pipeline Failed!'
+            echo 'Linux Command Explorer CI/CD Pipeline Failed!'
         }
     }
 }
